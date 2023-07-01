@@ -1,0 +1,65 @@
+<launch>
+	<group>
+		<node pkg="iq_gnc" type="drone1.py" name="square1" output="screen" ns="/drone1">
+			<param name="namespace" value="/drone1"/>
+			<param name="use_sim_time"  value="true" />
+		</node>
+	</group>
+	<group>
+		
+		<node pkg="iq_gnc" type="drone2.py" name="square2" output="screen" ns="/drone2">
+			<param name="namespace" value="/drone2"/>
+			<param name="use_sim_time"  value="true" />
+		</node>
+	</group>
+	<group>	
+		<node pkg="iq_gnc" type="drone3.py" name="square3" output="screen" ns="/drone3">
+			<param name="namespace" value="/drone3"/>
+			<param name="use_sim_time"  value="true" />
+		</node>
+	</group>
+	<group>	
+		<node pkg="iq_gnc" type="drone4.py" name="square4" output="screen" ns="/drone4">
+			<param name="namespace" value="/drone4"/>
+			<param name="use_sim_time"  value="true" />
+		</node>
+	</group>
+	<group>
+		
+		<node pkg="iq_gnc" type="drone5.py" name="square5" output="screen" ns="/drone5">
+			<param name="namespace" value="/drone5"/>
+			<param name="use_sim_time"  value="true" />
+		</node>
+	</group>
+	<group>	
+		<node pkg="iq_gnc" type="drone6.py" name="square6" output="screen" ns="/drone6">
+			<param name="namespace" value="/drone6"/>
+			<param name="use_sim_time"  value="true" />
+		</node>
+	</group>
+	<group>	
+		<node pkg="iq_gnc" type="drone7.py" name="square7" output="screen" ns="/drone7">
+			<param name="namespace" value="/drone7"/>
+			<param name="use_sim_time"  value="true" />
+		</node>
+	</group>
+	<group>
+		
+		<node pkg="iq_gnc" type="drone8.py" name="square8" output="screen" ns="/drone8">
+			<param name="namespace" value="/drone8"/>
+			<param name="use_sim_time"  value="true" />
+		</node>
+	</group>
+	<group>	
+		<node pkg="iq_gnc" type="drone9.py" name="square9" output="screen" ns="/drone9">
+			<param name="namespace" value="/drone9"/>
+			<param name="use_sim_time"  value="true" />
+		</node>
+	</group>
+	<!-- <group>	
+		<node pkg="iq_gnc" type="drone10.py" name="square10" output="screen" ns="/drone10">
+			<param name="namespace" value="/drone10"/>
+			<param name="use_sim_time"  value="true" />
+		</node>
+	</group> -->
+</launch>
