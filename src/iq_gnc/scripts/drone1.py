@@ -325,6 +325,8 @@ def handleForMoreDrones(numDrones = 0, dataCoordinate = []):
     numTops = len(splitCoors)
     preXYCoors = []
     postXYCoors = []
+
+    # Handle num drones use
     for idx in range(numTops):
         subCoors = []
         subCoors.insert(len(subCoors), int(splitCoors[idx].split(',')[X]))
@@ -338,6 +340,8 @@ def handleForMoreDrones(numDrones = 0, dataCoordinate = []):
     manageDrone.requestXDroneTakeOff(realNumDrones - 1)
     XsubAt = []
     YsubAt = []
+
+    # Handle add coordinates inside each edge when num drones use greater than num vertexs
     for i in range(len(preXYCoors)):
         cur = preXYCoors[i]
         next = preXYCoors[(i + 1) % numTops]
@@ -359,6 +363,8 @@ def handleForMoreDrones(numDrones = 0, dataCoordinate = []):
             postXYCoors.insert(i * multiple + j + 1, newSubCoors)
     min_distance_between_two_coords = find_closest_coords(postXYCoors)
     scale = MIN_DISTANCE / min_distance_between_two_coords
+
+    # Scale to prevent from collision
     postXYCoors = scale_coords(postXYCoors, scale)
 
     minX = float('inf')
@@ -377,44 +383,8 @@ def handleForMoreDrones(numDrones = 0, dataCoordinate = []):
 
     assignments, total_cost_var = minimize_path_cost(current_coordinate_all_drones, postXYCoors)
 
-
-    # PSO algorithm
-
-    # all_combination = len(list(itertools.permutations(current_coordinate_all_drones, len(postXYCoors))))
-    # if(all_combination < 600000):
-    #     test = iterator(realNumDrones, postXYCoors, all_combination)
-    # else:
-    #     test = iterator(realNumDrones, postXYCoors)
-    
-
-    # Greedy algorithm
-
-    # postXYCoors = checkDistance(postXYCoors, XsubAt, YsubAt)
-    # postXYCoors = updateLTZero(postXYCoors)
-    # shallow_copy_current_coordinates = list(current_coordinate_all_drones)
-    # result = find_nearest_drones(shallow_copy_current_coordinates, postXYCoors)
-    # coords_all = fill_coors(postXYCoors, result[0])
-    # total_cost_var = result[1]
-
     total_cost_without_algorithms = total_cost(current_coordinate_all_drones, postXYCoors)
 
-    # drones_select = choose_drones(current_coordinate_all_drones, postXYCoors)
-    # new_coordinates = []
-    # if(len(drones_select) >= 8):
-    #     drones_temp = []
-    #     coords_temp = []
-    #     for i in range(len(drones_select)):
-    #         drones_temp.insert(len(drones_temp), drones_select[i])
-    #         coords_temp.insert(len(coords_temp), postXYCoors[i])
-    #         if len(drones_temp) == 8 or i == len(drones_select) - 1:
-    #             new_coords_temp = super_abb(drones_temp, coords_temp)
-    #             new_coordinates.extend(new_coords_temp)
-    #             drones_temp = []
-    #             coords_temp = []
-    # else:
-    #     new_coordinates = super_abb(drones_select, postXYCoors)
-
-    # coords_all = fill_coors(new_coordinates, drones_select)
     coords = fill(assignments)
     update_position(current_coordinate_all_drones, coords)
     rospy.loginfo("Total cose without using min path: %s", str(total_cost_without_algorithms))
